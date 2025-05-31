@@ -1,6 +1,6 @@
 # João Victor Alves
 
-Olá, sou o João, tenho 19 anos e atualmente estou no 8° do curso de Ciência da Computação.
+Olá, sou o João, tenho 20 anos e atualmente estou no 8° do curso de Ciência da Computação.
 Recentemente venho estudando C# e .Net
 
 ## Conecte-se Comigo
