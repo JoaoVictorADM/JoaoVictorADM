@@ -1,0 +1,41 @@
+name: Atualizar Idade no Readme
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar_idade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Executar script de atualização da idade
+        run: python .github/workflows/updateAge.py
+
+      - name: Configurar Git
+        run: |
+          git config --global user.name 'GitHub Action Bot'
+          git config --global user.email 'action-bot@github.com'
+
+      - name: Verificar alterações e fazer commit
+        run: |
+          git add .
+          if ! git diff --staged --quiet; then
+            git commit -m "Atualizando idade no Readme"
+            git push
+          else
+            echo "Nenhuma alteração na idade para commitar."
+          fi
